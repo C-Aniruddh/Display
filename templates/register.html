@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sign Up</title>
+	<link rel="stylesheet" href="static/css/app.css">
+	<!-- Compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+	<!-- Optimizing for mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+	<!-- header and presentation -->
+	<div class="row">
+		<div class="container app-presentation">
+			<h3 class="center-align">Welcome!</h3>
+		</div>
+	</div>
+	<!-- login panel -->
+	<div class="row">
+		<div class="col s12 m6 l4 offset-m3 offset-l4">
+			<div class="card-panel">
+				<form method=POST action="{{ url_for('register') }}">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="user_prefix" type="text" placeholder="Name" name="name" class="validate">
+							<label for="user_prefix">Full Name</label>
+						</div>
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="user_prefix" type="email" placeholder="user@mail.com" name="email" class="validate">
+							<label for="user_prefix data-error="wrong" data-success="right"">Email ID</label>
+						</div>
+						<div class="input-field col s12">
+							<i class="mdi-action-account-circle prefix"></i>
+							<input id="user_prefix" type="text" placeholder="username" name="username" class="validate">
+							<label for="user_prefix">Username</label>
+						</div>
+						<div class="input-field col s12">
+							<i class="mdi-communication-vpn-key prefix"></i>
+							<input id="passwd_prefix" type="password" placeholder="password" name="pass" class="validate">
+							<label for="passwd_prefix">Password</label>
+						</div>
+						<div class="input-field col s12 center">
+							<button class="btn waves-effect waves-light" type="submit" name="action">
+								Sign Up
+								<i class="mdi-content-send right"></i>
+							</button>
+						</div>
+
+						<div class="divider"></div>
+
+						<div class="col s12">
+							<p class="center-align">Signed Up already?<br><a href="/userlogin">Login</a></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- importing scripts -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script>$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+</body>
+</html>
