@@ -41,6 +41,59 @@ def index():
 
     return render_template('index.html')
 
+@app.route('/myuploads')
+def myuploads():
+    if 'username' in session:
+        uploader = session['username']
+        wallpaper = mongo.db.wallpaper
+        find_image = wallpaper.find({'uploadedby' : uploader})
+        count = find_image.count()
+        imagelist = range(0, count, 1)
+        imgur_link = []
+        image_author = []
+        image_title = []
+
+        for x in imagelist:
+            y = x + 1
+            z = str(y)
+            img_find=wallpaper.find_one({'uploader_count' : z, 'uploadedby' : uploader})
+            img_url = img_find['imgur_link']
+            imgur_link.append(img_url)
+            img_auth = img_find['author']
+            image_author.append(img_auth)
+            img_titl = img_find['title']
+            image_title.append(img_titl)
+
+        return render_template('myuploads.html', image_author=image_author, image_title=image_title, imgur_link=imgur_link, imagenumber=imagelist)
+    return 'you have to be logged in'
+
+@app.route('/search/<searchq>')
+def search(searchq):
+    if 'username' in session:
+        query = searchq
+        wallpaper = mongo.db.wallpaper
+        find_img = wallpaper.find({'image_tags':{"$regex": query}})
+        count = find_img.count()
+        print count
+        imagelist = range(0, count, 1)
+        imgur_link = []
+        image_author = []
+        image_title = []
+        print imgur_link
+        for x in imagelist:
+            img_find = wallpaper.find_one({'image_tags':{"$regex": query}})
+            img_url = img_find['imgur_link']
+            imgur_link.append(img_url)
+            img_auth = img_find['author']
+            image_author.append(img_auth)
+            img_titl = img_find['title']
+            image_title.append(img_titl)
+
+        return render_template('search.html', image_author=image_author, image_title=image_title,
+                               imgur_link=imgur_link, imagenumber=imagelist)
+
+    return 'you have to be logged in'
+
 @app.route('/material')
 def material():
     return render_template('material.html')
@@ -56,6 +109,7 @@ def image(img_id):
         image_title = img_find['title']
         return render_template('image.html', image_title=image_title, image_author=image_author, imgur_link=imgur_link)
     return 'HA'
+
 
 @app.route('/userlogin', methods=['POST','GET'])
 def userlogin():
@@ -111,11 +165,14 @@ def submit():
         image_data["data"]["height"]
         image_data["data"]["link"]
         image_data["data"]["deletehash"]
-
+        image_tag = request.form['image_tags']
+        uploader = session['username']
+        uploader_find = wallpaper.find({'uploadedby' : uploader})
+        uploader_count = uploader_find.count() + 1
         image_author = request.form['image_author']
         image_title = request.form['image_title']
         image_uploaddate = timestamp.strftime("%Y-%m-%d")
-        wallpaper.insert({'image_id': str(image_id), 'type': 'image', 'title': image_title, 'author': image_author, 'imgur_link': image_data["data"]["link"], 'image_uploaddate' : image_uploaddate})
+        wallpaper.insert({'uploadedby' : uploader, 'uploader_count': str(uploader_count), 'image_tags' : image_tag, 'image_id': str(image_id), 'type': 'image', 'title': image_title, 'author': image_author, 'imgur_link': image_data["data"]["link"], 'image_uploaddate' : image_uploaddate})
 
     return render_template('submit2.html')
 
