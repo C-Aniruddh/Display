@@ -6,14 +6,3 @@ handlers:
 - url: .*
   script: run_server.app
 
-libraries:
-- name: flask
-  version: "0.11.1"
-- name: markupsafe
-  version: "0.15"
-- name: flask-pymongo
-  version: "0.4.1"
-- name: bcrypt
-  version: "3.1.1"
-- name: pymongo
-  version: "3.3.1"
