@@ -17,7 +17,6 @@ imgur_handler = Imgur(app)
 
 @app.route('/')
 def index():
-
     if 'username' in session:
         wallpaper = mongo.db.wallpaper
         count = wallpaper.count()
@@ -28,7 +27,9 @@ def index():
         image_title = []
 
         for x in imagelist:
-            img_find=wallpaper.find_one({'image_id' : x+1})
+            y = x + 1
+            z = str(y)
+            img_find=wallpaper.find_one({'image_id' : z})
             img_url = img_find['imgur_link']
             imgur_link.append(img_url)
             img_auth = img_find['author']
@@ -43,6 +44,18 @@ def index():
 @app.route('/material')
 def material():
     return render_template('material.html')
+
+@app.route('/image/<img_id>')
+def image(img_id):
+    if 'username' in session:
+        wallpaper = mongo.db.wallpaper
+        x = str(img_id)
+        img_find = wallpaper.find_one({'image_id' : x})
+        imgur_link = img_find['imgur_link']
+        image_author = img_find['author']
+        image_title = img_find['title']
+        return render_template('image.html', image_title=image_title, image_author=image_author, imgur_link=imgur_link)
+    return 'HA'
 
 @app.route('/userlogin', methods=['POST','GET'])
 def userlogin():
@@ -102,7 +115,7 @@ def submit():
         image_author = request.form['image_author']
         image_title = request.form['image_title']
         image_uploaddate = timestamp.strftime("%Y-%m-%d")
-        wallpaper.insert({'image_id': image_id, 'type': 'image', 'title': image_title, 'author': image_author, 'imgur_link': image_data["data"]["link"], 'image_uploaddate' : image_uploaddate})
+        wallpaper.insert({'image_id': str(image_id), 'type': 'image', 'title': image_title, 'author': image_author, 'imgur_link': image_data["data"]["link"], 'image_uploaddate' : image_uploaddate})
 
     return render_template('submit2.html')
 

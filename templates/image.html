@@ -7,8 +7,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
   <!--<script>
   $( document ).ready(function{
@@ -19,7 +19,10 @@
 <body>
 <nav class="teal lighten-1" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo">Walls</a>
+    <ul class="left hide-on-med-and-down">
+        <li><a href="/"><i class="material-icons">done</i></a></li>
+      </ul>
+    <a id="logo-container" href="/" class="brand-logo">Walls</a>
     <ul class="right hide-on-med-and-down">
       <li><a href="/submit"><i class="material-icons">add</i></a></li>
       <li><a href="/explore"><i class="material-icons">view_quilt</i></a></li>
@@ -33,25 +36,23 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center teal-text">Community wallpapers</h1>
+      <h1 class="header center teal-text">{{image_title}}</h1>
       <div class="row">
-        {% for x in imagenumber %}
-      <div class="col s6">
-        <div class="card medium">
+      <div class="col s12">
+        <div class="card">
           <div class="card-image">
-            <img src="{{imgur_link[x]}}">
-            <span class="card-title">{{image_title[x]}}</span>
+            <img src="{{imgur_link}}">
+            <span class="card-title">{{image_title}}</span>
           </div>
           <div class="card-content">
-            <span class="black-text">Image Author : {{image_author[x]}}</span>
+            <span class="black-text">Image Author : {{image_author}}</span>
           </div>
           <div class="card-action">
-            <a href="{{imgur_link[x]}}" download>Download Image</a>
-            <a href="/image/{{x+1}}">More Info</a>
+            <a href="{{imgur_link}}" download>Download Image</a>
+            <!--<a href="/image/{{x}}">More Info</a>-->
           </div>
         </div>
       </div>
-       {% endfor %}
     </div>
       <br><br>
 
