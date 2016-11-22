@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class='container'>
+  <div class="container-shadow">
+    <form class="form" method=POST action="{{ url_for('submit') }}" role="form" enctype="multipart/form-data">
+      <h2 class="header">Submit Image</h2>
+        <div class="form-group">
+          <input type="text" name="image_title" placeholder="Amazing Shot" class="form-control" required>
+          <span class="bar"></span>
+          <label>Image Title</label>
+        </div>
+        <div class="form-group">
+          <input type="text" name="image_author" placeholer="Aniruddh Chandratre" class="form-control"  required>
+          <span class="bar"></span>
+          <label>Author Name</label>
+        </div>
+        <div class="form-group">
+          <input type="file" name="uploaded_image">
+          <span class="bar"></span>
+          <label></label>
+        </div>
+      <button type="submit" class="btn btn-default">Send</button>
+     </form>
+   </div>
+</div>
+{% endblock %}

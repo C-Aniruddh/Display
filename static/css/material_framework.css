@@ -1,0 +1,958 @@
+/* -- reset CSS ------------------------------------- */
+
+/* -- import Bootstrap v3 --------------------------- */
+@import "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+/* -- import Bootstrap docs ------------------------- */
+@import "//getbootstrap.com/assets/css/docs.min.css";
+/* -- Body style ------------------------------------ */
+body {
+  font-family: "Roboto", "Nato", 'Helvetica Neue, Helvetica, Arial', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #212121;
+  
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* -- Main style ------------------------------------ */
+h1{
+  font-size:3.4rem;
+}
+h2{
+  font-size:2.8rem;
+}
+h3{
+  font-size:2.4rem;
+}
+h4{
+  font-size:2.0rem;
+}
+h5{
+  font-size:1.8rem;
+}
+p{
+  font-size:1.6rem;
+}
+span{
+  font-size:1.6rem;
+  font-weight:500;
+}
+
+/* -- Buttons style ------------------------------------ */
+.btn {
+  font-family: "Roboto", 'Helvetica Neue, Helvetica, Arial', sans-serif; 
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: inherit;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.btn-default, .btn-link {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.btn {
+  outline: 0;
+  outline-offset: 0;
+  border: 0;
+  border-radius: 2px;
+
+  transition: all .15s ease-in-out; 
+  -o-transition: all .15s ease-in-out; 
+  -moz-transition: all .15s ease-in-out; 
+  -webkit-transition: all .15s ease-in-out;  
+  
+  &:focus, &:active, &.active, &:active:focus, &.active:focus {
+    outline: 0;
+    outline-offset: 0;  
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
+
+
+/* -- Buttons types -------------------------------- */
+.btn-raised {
+  // shadow depth 1
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12),
+  0 1px 2px 0 rgba(0, 0, 0, .24);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12),
+  0 1px 2px 0 rgba(0, 0, 0, .24); 
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12),
+  0 1px 2px 0 rgba(0, 0, 0, .24); 
+   
+  &:active, &.active, &:active:focus, &.active:focus {
+    // shadow depth 2
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23); 
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23); 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23);
+  }
+  
+  &:focus {
+    // shadow depth 2
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23); 
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23); 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16),
+  0 3px 6px rgba(0, 0, 0, .23);
+  }
+  
+}
+
+.btn-flat { 
+  
+}
+
+.btn.btn-circle {
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* -- Buttons colors -------------------------------- */
+//## Button template
+.btn-temlate (@color500; @color600; @color700; @color800; @color900) {
+  background-color: @color500; // Color 500
+  
+  &:hover {
+    background-color: @color600; // Color 600
+  }
+  
+  &:active, &.active {
+    background-color: @color600; // Color 600
+  }
+  
+  &:focus {
+    background-color: @color700; // Color 700
+  }
+  
+  &:disabled, &.disabled, &[disabled] {
+    background-color: darken(#ccc, 10%);
+  }
+  
+  //## color for riple-effect
+  .ink {
+    background-color: @color800; // Color 800
+  }
+}
+.btn-flat-temlate (@color500; @color600; @color700; @color800; @color900) {
+  color: @color500; // Color 500
+  background-color: transparent;
+  
+  &:hover {
+    color: @color600; // Color 600
+    background-color: lighten(#999, 30%);
+  }
+  
+  &:active, &.active {
+    color: @color700; // Color 700
+    background-color: lighten(#999, 20%);
+  }
+  
+  &:focus {
+    color: @color800; // Color 800
+    background-color: lighten(#999, 20%);
+  } 
+  
+  //## color for riple-effect
+  .ink {
+    background-color: darken(#ccc, 30%);
+  }
+}
+
+//## Default // color: white
+.btn-default, .dropdown-toggle.btn-default {
+  .btn-temlate(#fff; lighten(#999, 30%); lighten(#999, 20%); lighten(#999, 12%); lighten(#999, 20%);) 
+}
+.btn-flat.btn-default {
+  .btn-flat-temlate(#212121; darken(#212121, 5%); darken(#212121, 12%); #000; #000;) 
+}
+
+//## Primary // color: blue
+.btn-primary, .dropdown-toggle.btn-primary {
+  .btn-temlate(#5677fc; #4e6cef; #455ede; #3b50ce; #2a36b1;) 
+}
+.btn-flat.btn-primary {
+  .btn-flat-temlate(#5677fc; #4e6cef; #455ede; #3b50ce; #2a36b1;) 
+}
+
+//## Success // color: green
+.btn-success, .dropdown-toggle.btn-success {
+  .btn-temlate(#259b24; #0a8f08; #0a7e07; #056f00; #0d5302;)   
+}
+.btn-flat.btn-success {
+  .btn-flat-temlate(#259b24; #0a8f08; #0a7e07; #056f00; #0d5302;) 
+}
+
+//## Info // color: light blue
+.btn-info, .dropdown-toggle.btn-info {
+  .btn-temlate(#03a9f4; #039be5; #0288d1; #0277bd; #01579b;)   
+}
+.btn-flat.btn-info {
+  .btn-flat-temlate(#03a9f4; #039be5; #0288d1; #0277bd; #01579b;) 
+}
+
+//## Warning // color: amber
+.btn-warning, .dropdown-toggle.btn-warning {
+  .btn-temlate(#ffc107; #ffb300; #ffa000; #ff8f00; #ff6f00;)   
+}
+.btn-flat.btn-warning {
+  .btn-flat-temlate(#ffc107; #ffb300; #ffa000; #ff8f00; #ff6f00;)   
+}
+
+//## Danger // color: deep orange
+.btn-danger, .dropdown-toggle.btn-danger {
+  .btn-temlate(#ff5722; #f4511e; #e64a19; #d84315; #bf360c;)   
+}
+.btn-flat.btn-danger {
+  .btn-flat-temlate(#ff5722; #f4511e; #e64a19; #d84315; #bf360c;)  
+}
+
+/* -- Buttons sizes -------------------------------- */
+.btn {
+  min-width: 88px;
+  padding: 10px 14px;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+  min-width: 122px;
+  padding: 10px 16px;
+  font-size: 1.8rem;
+  line-height: 1.3; 
+}
+
+.btn-sm, .btn-group-sm>.btn {
+  min-width: 64px;
+  padding: 4px 12px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.btn-xs, .btn-group-xs>.btn {
+  min-width: 46px;
+  padding: 2px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.btn-circle {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  
+  span {
+    line-height: 56px;
+  }
+}
+
+.btn-circle.btn-lg {
+  width: 78px;
+  height: 78px;
+  min-width: 78px;
+  
+  span {
+    line-height: 78px;
+  }
+}
+
+.btn-circle.btn-sm {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  
+  span {
+    line-height: 40px;
+  }
+}
+
+.btn-circle.btn-xs {
+  width: 30px;
+  height: 30px; 
+  min-width: 30px;
+  
+  span {
+    line-height: 30px;
+  }
+}
+
+
+/*-- Button groups --------------------------------- */
+.btn-group .btn {
+  border-radius: 2px;
+}
+
+.btn-group.open .dropdown-toggle {
+  outline: 0;
+  outline-offset: 0;  
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+  margin-left: 0;
+}
+
+.btn-group>.btn:hover, .btn-group-vertical>.btn:hover {
+  z-index: 0;
+}
+ .btn-group>.btn:focus:hover, .btn-group-vertical>.btn:focus:hover, .btn-group>.btn:active:hover, .btn-group-vertical>.btn:active:hover, .btn-group>.btn.active:hover, .btn-group-vertical>.btn.active:hover {
+  z-index: 2;
+}
+
+
+
+/* -- Ripple effect -------------------------------- */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0,0,0);
+}
+.ink {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+
+  background: #fff;
+  opacity: 1;
+}
+
+// animation effect
+.ink.animate {
+  -webkit-animation: ripple .5s linear;
+  -moz-animation: ripple .5s linear;
+  -ms-animation: ripple .5s linear;
+  -o-animation: ripple .5s linear;
+  animation: ripple .5s linear;
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-moz-keyframes ripple {
+  100% {
+    opacity: 0;
+    -moz-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-ms-keyframes ripple {
+  100% {
+    opacity: 0;
+    -ms-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-o-keyframes ripple {
+  100% {
+    opacity: 0;
+    -o-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+
+/* -- Input styles ---------------------------------- */
+.form-group {
+  position: relative;
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+.input-group {
+  position: relative;
+}
+.form-control {
+  display: block;
+  height: 36px;
+  width: 100%; 
+  border: none;
+  border-radius: 0 !important;
+
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid #757575;
+}
+.input-group .form-control {
+  position: relative;
+  z-index: inherit;
+  float: inherit;
+  width: 100%;
+  margin-bottom: 0;
+}
+.form-control:focus {
+  border-color: #757575;
+  outline: none;
+  box-shadow: none;
+}
+
+/* -- label styles ---------------------------------- */
+label {
+  position: absolute;
+  top: -20px;
+  color: #999;
+  font-size: 1.4rem;
+  font-weight: 300;
+  
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.form-horizontal .control-label {
+  position: relative;
+  top: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .control-label {
+    font-size: 1.6rem;
+  }
+}
+  
+
+
+
+
+.float-label {
+  left: 0;
+  top: 7px;
+  font-size: 1.6rem;
+  pointer-events: none;
+}
+
+/* active state */
+.form-control:focus ~ .float-label, .form-control:valid ~ .float-label {
+  top: -18px;
+  font-size: 1.2rem;
+}
+
+
+/* input colors ---- */
+// default
+.form-control:focus {
+  ~ label {
+    color: #03a9f4;
+  }
+  
+  ~ .form-bar:before, ~ .form-bar:after {
+    background: #03a9f4;
+  }
+}
+
+
+
+
+.form-control:valid ~ .control-label {
+
+}
+
+/* help-block */
+.form-group .help-block {
+  position: absolute;
+}
+
+.help-block {
+  color: #bdbdbd; // caption
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* input addon ---*/
+.input-group-addon {
+  border: none;
+  background: transparent;
+}
+
+/* ------  inline ----*/
+.input-group-addon, .form-inline .input-group {
+  display: table-cell;
+}
+
+.input-group-addon, .input-group-btn {
+  width: inherit;
+}
+
+.input-group {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .form-inline .form-group {
+    margin-top: 1.6rem;
+  }
+  
+  .input-group-btn, .input-group .form-control, .input-group-addon, .form-inline .input-group {
+    display: inline-block;
+  }
+  
+  .input-group {
+    width: auto;
+  }
+}
+
+/* -- bar styles -------------------------------------- */
+.form-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.form-bar:before, .form-bar:after 	{
+  content: '';
+  height: 1px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  transition: 0.3s ease all;
+  -moz-transition: 0.3s ease all;
+  -webkit-transition: 0.3s ease all;
+}
+.form-bar:before {
+  left: 50%;
+}
+.form-bar:after {
+  right: 50%;
+}
+
+/* active state */
+.form-control:focus ~ .form-bar:before, .form-control:focus ~ .form-bar:after {
+  width: 50%;
+}
+
+/* -- highlighter styles ------------------------------ */
+.form-highlight {
+  position: absolute;
+  height: 60%;
+  width: 60px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* active state */
+.form-control:focus ~ .form-highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* -- highlighter animation --------------------------- */
+@-webkit-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+  from { background:#5264AE; }
+  to { width:0; background:transparent; }
+}
+
+
+/*-- Checkbox --------------------------- */
+// fork from http://codepen.io/jasonmayes/pen/wxtFr
+/* 
+ * Core styles required for the checkboxes.
+ * @author Jason Mayes 2014, www.jasonmayes.com
+*/
+.form-group.checkbox {
+  margin-top: 20px;
+}
+
+.checkbox input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.checkbox label {
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  top: 10px;
+  padding-left: 0;
+}
+
+.checkbox .chk-span {
+  top: 0;
+  border: 1px solid #5a5a5a;
+  color: #1d1d1d;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  height: 14px;
+  margin: 0 14px 14px 1px;
+  outline-color: #eaeaea;
+  padding: 0;
+  position: relative;
+  width: 14px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.checkbox .chk-span.checked {
+  top: -2px;
+  border-left: 2px solid #03a9f4;
+  border-bottom: 4px solid #03a9f4;
+  border-top: 1px solid rgba(0,0,0,0);
+  border-right: 1px solid rgba(0,0,0,0);
+  -webkit-transform: rotate(-45deg) scaleY(0.5);
+  -moz-transform: rotate(-45deg) scaleY(0.5);
+  -ms-transform: rotate(-45deg) scaleY(0.5);
+  -o-transform: rotate(-45deg) scaleY(0.5);
+  transform: rotate(-45deg) scaleY(0.5);
+}
+
+// Checkbox colors
+.checkbox .chk-span.checked {
+  border-left-color: #03a9f4;
+  border-bottom-color: #03a9f4;
+}
+
+// focus state
+.checkbox input[type='checkbox']:focus ~ label {
+  
+  color: #03a9f4;
+  
+  .chk-span {
+    border-color: #03a9f4;
+    &.checked {
+      border-left-color: #03a9f4;
+      border-bottom-color: #03a9f4;
+      border-top: 1px solid rgba(0, 0, 0, 0);
+      border-right: 1px solid rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .form-inline .radio label, .form-inline .checkbox label {
+    padding-left: 5px;
+  }
+}
+
+
+
+
+
+.form-control-static {
+  font-size: 1.6rem;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: transparent;
+  border-bottom-style: dashed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#focusedInput {
+  border-color: #ccc;
+  border-color: rgba(82,168,236,.8);
+  outline: 0;
+  box-shadow: none;
+}
+
+
+
+//## Alpha values for grey text, icons, and dividers
+@gray-darker:            #212121; // #212121 - text
+@gray-dark:              #757575; // #757575 - secondary text, icons
+@gray:                   #bdbdbd; // #bdbdbd - hint text
+@gray-light:             #e0e0e0; // #e0e0e0 - divider
+@gray-lighter:           #f5f5f5; // #f5f5f5 - background
+
+//** Typographic Scale
+@font-size-display-4:       112;
+@font-size-display-3:       56;
+@font-size-display-2:       45;
+@font-size-display-1:       34;
+@font-size-headline:        28;
+@font-size-title:           24;
+@font-size-subhead-2:       20;
+@font-size-subhead-1:       20;
+@font-size-body-2:          16;
+@font-size-body-1:          16;
+@font-size-caption:         16;
+@font-size-txtlabel:        16;
+@font-size-menu:            14;
+@font-size-button:          14;
+
+//** Typographic Scale for devices (max-width: 960px)
+@font-size-dv-subhead:      16;
+@font-size-dv-body:         14;
+@font-size-dv-menu:         14;
+
+//** Basic Styles
+@font-weight-display-4:     100;
+@font-weight-display-3:     300;
+@font-weight-display-2:     300;
+@font-weight-display-1:     300;
+@font-weight-headline:      300;
+@font-weight-title:         400;
+@font-weight-subhead-2:     500;
+@font-weight-subhead-1:     300;
+@font-weight-body-2:        400;
+@font-weight-body-1:        300;
+@font-weight-caption:       300;
+@font-weight-txtlabel:      300;
+@font-weight-menu:          400;
+@font-weight-button:        400;
+
+//** Line Height
+@line-height-display-4:     128;
+@line-height-display-3:     84;
+@line-height-display-2:     48;
+@line-height-display-1:     40;
+@line-height-headline:      32;
+@line-height-title:         28;
+@line-height-subhead-2:     28;
+@line-height-subhead-1:     24;
+@line-height-body-2:        24;
+@line-height-body-1:        20;
+@line-height-caption:       20;
+@line-height-txtlabel:      20;
+@line-height-menu:          20;
+@line-height-button:        20;
+
+//** Tracking and kerning
+@letter-spacing-display-4: -0.1;
+@letter-spacing-display-3: -0.05;
+@letter-spacing-display-2: 0;
+@letter-spacing-display-1: 0;
+@letter-spacing-headline:  0;
+@letter-spacing-title:     0.05;
+@letter-spacing-subhead-2: 0.1;
+@letter-spacing-subhead-1: 0.1;
+@letter-spacing-body-2:    0.1;
+@letter-spacing-body-1:    0.1;
+@letter-spacing-caption:   0.2;
+@letter-spacing-txtlabel:  0.1;
+@letter-spacing-menu:      0.1;
+@letter-spacing-button:    0.1;
+
+//** Basic colors/Color contrast
+@font-color-display-4:      @gray-dark;
+@font-color-display-3:      @gray-dark;
+@font-color-display-2:      @gray-dark;
+@font-color-display-1:      @gray-dark;
+@font-color-headline:       @gray-darker;
+@font-color-title:          @gray-darker;
+@font-color-subhead-2:      @gray-darker;
+@font-color-subhead-1:      @gray-darker;
+@font-color-body-2:         @gray-darker;
+@font-color-body-1:         @gray-darker;
+@font-color-caption:        @gray-dark;
+@font-color-txtlabel:       @gray-darker;
+@font-color-menu:           @gray-darker;
+@font-color-button:         @gray-darker;
+
+
+
+// Mixins
+.font-size(@fontSize: 14) {
+  font-size: @fontSize+0px; 
+  font-size: (@fontSize/10)+0rem;
+}
+.line-height(@leadingSize: 14) {
+  line-height: @leadingSize+0px; 
+  line-height: (@leadingSize/10)+0rem;
+}
+.letter-spacing(@kerningSize: 0) {
+  letter-spacing: @kerningSize+0px; 
+  letter-spacing: (@kerningSize/10)+0rem;
+}
+.font(@fontSize, @leadingSize, @kerningSize) {
+  font-size: @fontSize+0px; 
+  font-size: (@fontSize/10)+0rem;
+  line-height: @leadingSize+0px; 
+  line-height: (@leadingSize/10)+0rem;
+  letter-spacing: @kerningSize+0px; 
+  letter-spacing: (@kerningSize/10)+0rem;
+}
+
+// Typography
+
+// Typographic Scale & Basic Styles
+// -------------------------
+.display-4 {
+  .font(@font-size-display-4, @line-height-display-4, @letter-spacing-display-4);
+  font-weight: @font-weight-display-4;
+  color: @font-color-display-4;
+  text-transform: inherit;
+}
+.display-3 {
+  .font(@font-size-display-3, @line-height-display-3, @letter-spacing-display-3);
+  font-weight: @font-weight-display-3;
+  color: @font-color-display-3;
+  text-transform: inherit;
+}
+.display-2 {
+  .font(@font-size-display-2, @line-height-display-2, @letter-spacing-display-2);
+  font-weight: @font-weight-display-2;
+  color: @font-color-display-2;
+  text-transform: inherit;
+}
+.display-1 {
+  .font(@font-size-display-1, @line-height-display-1, @letter-spacing-display-1);
+  font-weight: @font-weight-display-1;
+  color: @font-color-display-1;
+  text-transform: inherit;
+}
+.headline {
+  .font(@font-size-headline, @line-height-headline, @letter-spacing-headline);
+  font-weight: @font-weight-headline;
+  color: @font-color-headline;
+  text-transform: inherit;
+}
+.title {
+  .font(@font-size-title, @line-height-title, @letter-spacing-title);
+  font-weight: @font-weight-title;
+  color: @font-color-title;
+  text-transform: inherit;
+}
+.subhead-2 {
+  .font(@font-size-subhead-2, @line-height-subhead-2, @letter-spacing-subhead-2);
+  font-weight: @font-weight-subhead-2;
+  color: @font-color-subhead-2;
+  text-transform: inherit;
+}
+.subhead-1 {
+  .font(@font-size-subhead-1, @line-height-subhead-1, @letter-spacing-subhead-1);
+  font-weight: @font-weight-subhead-1;
+  color: @font-color-subhead-1;
+  text-transform: inherit;
+}
+.body-2 {
+  .font(@font-size-body-2, @line-height-body-2, @letter-spacing-body-2);
+  font-weight: @font-weight-body-2;
+  color: @font-color-body-2;
+  text-transform: inherit;
+}
+.body-1 {
+  .font(@font-size-body-1, @line-height-body-1, @letter-spacing-body-1);
+  font-weight: @font-weight-body-1;
+  color: @font-color-body-1;
+  text-transform: inherit;
+}
+.caption {
+  .font(@font-size-caption, @line-height-caption, @letter-spacing-caption);
+  font-weight: @font-weight-caption;
+  color: @font-color-caption;
+  text-transform: inherit;
+}
+.txtlabel {
+  .font(@font-size-txtlabel, @line-height-txtlabel, @letter-spacing-txtlabel);
+  font-weight: @font-weight-txtlabel;
+  color: @font-color-txtlabel;
+  text-transform: inherit;
+}
+.menu {
+  .font(@font-size-menu, @line-height-menu, @letter-spacing-menu);
+  font-weight: @font-weight-menu;
+  color: @font-color-menu;
+  text-transform: inherit;
+}
+.button {
+  .font(@font-size-button, @line-height-button, @letter-spacing-button);
+  font-weight: @font-weight-button;
+  color: @font-color-button;
+  text-transform: uppercase;
+}
+
+// Font-size for device
+@media only screen and (max-width: 960px) {
+  .subhead-2 {
+    .font-size(@font-size-dv-subhead);
+  }
+  .subhead-1 {
+    .font-size(@font-size-dv-subhead);
+  }
+  .body-2 {
+    .font-size(@font-size-dv-body);
+  }
+  .body-1 {
+    .font-size(@font-size-dv-body);
+  }
+  .menu {
+    .font-size(@font-size-dv-menu);
+  }
+}
+
+.display-4, .display-3, .display-2, .display-1  {
+  margin: 0 0 @line-height-title/2+0px 0;
+  margin-bottom: @line-height-title/20+0rem;
+}
+
+.headline, .title, .subhead-2, .subhead-1, .body-2, .body-1, .caption, .txtlabel, .menu, .button {
+  margin: 0 0 @line-height-body-1/2+0px 0;
+  margin-bottom: @line-height-body-1/20+0rem;
+}
+
+/* --- Some Title or Something */
+.jumbotron {
+  color: #f5f5f5;
+  background-color: #039be5;
+  border-top: 1px solid #34a782;
+  border-bottom: 1px solid #1b926c;
+  margin-bottom: 0;
+  padding: 20px 0 20px;
+}
+
+/*-- Text styles --------------------------------- */
+.text-large {
+  font-size: 150%;
+}
+
+.text-small {
+  font-size: 75%;
+}
