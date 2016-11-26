@@ -1,7 +1,8 @@
-from flask import Flask, render_template, url_for, request, session, redirect, jsonify
+from flask import Flask, render_template, url_for, request, session, redirect, jsonify, json
 from flask_imgur import Imgur
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
+from bson import json_util
 import bcrypt
 import datetime
 
@@ -76,16 +77,20 @@ def search(searchq):
         count = find_img.count()
         print count
         imagelist = range(0, count, 1)
-        imgur_link = []
-        image_author = []
-        image_title = []
+        imgur_link = [img_url for img_url in imagelist]
+        image_author = [img_auth for img_auth in imagelist]
+        image_title = [img_titl for img_titl in imagelist]
         print imgur_link
-        for x in imagelist:
+        for img_url in imagelist:
             img_find = wallpaper.find_one({'image_tags':{"$regex": query}})
             img_url = img_find['imgur_link']
             imgur_link.append(img_url)
+        for img_auth in imagelist:
+            img_find = wallpaper.find_one({'image_tags': {"$regex": query}})
             img_auth = img_find['author']
             image_author.append(img_auth)
+        for img_titl in imagelist:
+            img_find = wallpaper.find_one({'image_tags': {"$regex": query}})
             img_titl = img_find['title']
             image_title.append(img_titl)
 
@@ -173,14 +178,13 @@ def submit():
         image_title = request.form['image_title']
         image_uploaddate = timestamp.strftime("%Y-%m-%d")
         wallpaper.insert({'uploadedby' : uploader, 'uploader_count': str(uploader_count), 'image_tags' : image_tag, 'image_id': str(image_id), 'type': 'image', 'title': image_title, 'author': image_author, 'imgur_link': image_data["data"]["link"], 'image_uploaddate' : image_uploaddate})
-
     return render_template('submit2.html')
 
 @app.route('/get', methods=['POST', 'GET'])
 def get():
     wallpaper = mongo.db.wallpaper
     result = wallpaper.find()
-    return dumps(result)
+    return str(json.dumps({'results' : list(result)}, default = json_util.default, indent = 4))
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
