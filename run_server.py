@@ -183,7 +183,8 @@ def submit():
 @app.route('/get', methods=['POST', 'GET'])
 def get():
     wallpaper = mongo.db.wallpaper
-    result = wallpaper.find()
+    result = wallpaper.find({'_id': False})
+    result_list = list(result)
     return str(json.dumps({'results' : list(result)}, default = json_util.default, indent = 4))
 
 if __name__ == '__main__':
